@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "godofwar:item/poseidons_rage_power"
+  }
+}

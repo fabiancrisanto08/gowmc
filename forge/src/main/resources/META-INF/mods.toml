@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="godofwar"
+version="1.0.0"
+displayName="God of War: Todas las Sagas"
+description='''
+Mod completo de God of War para Minecraft 1.20.1 con todas las sagas, dioses, titanes, legion romana y GeckoLib.
+'''
+
+[[dependencies.godofwar]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.godofwar]]
+modId="architectury"
+mandatory=true
+versionRange="[9.2.14,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.godofwar]]
+modId="geckolib"
+mandatory=true
+versionRange="[4.4.4,)"
+ordering="AFTER"
+side="BOTH"

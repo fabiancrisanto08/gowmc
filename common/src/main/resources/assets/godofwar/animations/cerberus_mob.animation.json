@@ -1,0 +1,225 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.cerberus_mob.idle": {
+      "loop": true,
+      "animation_length": 1.6,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              3,
+              0,
+              0
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.35": [
+              -15,
+              0,
+              0
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.cerberus_mob.run": {
+      "loop": true,
+      "animation_length": 1.6,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              3,
+              0,
+              0
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.35": [
+              -15,
+              0,
+              0
+            ],
+            "1.6": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.cerberus_mob.triple_bite": {
+      "loop": false,
+      "animation_length": 0.85,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              18,
+              0,
+              0
+            ],
+            "0.85": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.35": [
+              -95,
+              0,
+              0
+            ],
+            "0.85": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.cerberus_mob.fire_breath": {
+      "loop": false,
+      "animation_length": 0.85,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              18,
+              0,
+              0
+            ],
+            "0.85": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.35": [
+              -95,
+              0,
+              0
+            ],
+            "0.85": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    "animation.cerberus_mob.bark_summon": {
+      "loop": false,
+      "animation_length": 0.85,
+      "bones": {
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.4": [
+              18,
+              0,
+              0
+            ],
+            "0.85": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "right_arm": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.35": [
+              -95,
+              0,
+              0
+            ],
+            "0.85": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    }
+  }
+}

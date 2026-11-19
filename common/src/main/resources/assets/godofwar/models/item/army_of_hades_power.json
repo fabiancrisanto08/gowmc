@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "godofwar:item/army_of_hades_power"
+  }
+}
