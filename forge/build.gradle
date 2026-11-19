@@ -1,8 +1,18 @@
-apply plugin: "com.github.johnrengelman.shadow"
+plugins {
+    id "com.github.johnrengelman.shadow"
+}
 
 architectury {
     platformSetupLoomIde()
     forge()
+}
+
+loom {
+    forge {
+        // Si tu mod usa mixins, descomenta la línea correspondiente:
+        // mixinConfig "${rootProject.mod_id}-common.mixins.json"
+        // mixinConfig "${rootProject.mod_id}.mixins.json"
+    }
 }
 
 configurations {
@@ -14,10 +24,9 @@ configurations {
 }
 
 dependencies {
-    modforge "net.minecraftforge:forge:${rootProject.forge_version}"
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
-    modImplementation "software.bernie.geckolib:geckolib-forge-1.20.1:${rootProject.geckolib_version}"
-    forgeRuntimeLibrary "com.eliotlash.mclib:mclib:20"
+    modImplementation "software.bernie.geckolib:geckolib-forge-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive false }
@@ -32,23 +41,31 @@ processResources {
 }
 
 shadowJar {
+    exclude "fabric.mod.json"
     exclude "architectury.common.json"
+
     configurations = [project.configurations.shadowCommon]
-    archiveClassifier = "dev-shadow"
+    archiveClassifier.set("dev-shadow")
 }
 
 remapJar {
     inputFile.set shadowJar.archiveFile
     dependsOn shadowJar
-    archiveClassifier = null
+    archiveClassifier.set("")
 }
 
 jar {
-    archiveClassifier = "dev"
+    archiveClassifier.set("dev")
 }
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
 }

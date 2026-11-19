@@ -24,25 +24,32 @@ subprojects {
 allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
 
-    archivesBaseName = "godofwar"
-    version = "1.0.0"
-    group = "com.spartanforge.godofwar"
+    base {
+        archivesName = rootProject.archives_base_name
+    }
 
-    tasks.withType(JavaCompile) {
+    version = rootProject.mod_version
+    group = rootProject.maven_group
+
+    repositories {
+        mavenCentral()
+        maven { url "https://maven.architectury.dev/" }
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.minecraftforge.net/" }
+        maven {
+            name = "GeckoLib"
+            url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = "UTF-8"
         options.release = 17
     }
 
     java {
         withSourcesJar()
-    }
-
-    repositories {
-        mavenCentral()
-        maven { url = "https://maven.fabricmc.net/" }
-        maven { url = "https://maven.minecraftforge.net/" }
-        maven { url = "https://maven.architectury.dev/" }
-        maven { url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
     }
 }
