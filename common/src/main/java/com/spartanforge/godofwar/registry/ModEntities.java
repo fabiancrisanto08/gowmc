@@ -44,6 +44,9 @@ import com.spartanforge.godofwar.entity.SpartanSmithVillagerEntity;
 import com.spartanforge.godofwar.entity.GreekOracleVillagerEntity;
 import com.spartanforge.godofwar.entity.DwarfForgerVillagerEntity;
 import com.spartanforge.godofwar.entity.RomanQuartermasterVillagerEntity;
+import com.spartanforge.godofwar.entity.projectile.ThrownLeviathanAxeEntity;
+import com.spartanforge.godofwar.entity.BloodOrbEntity;
+import com.spartanforge.godofwar.entity.projectile.DraupnirSpearProjectileEntity;
 import dev.architectury.registry.level.entity.EntityAttributeRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -270,6 +273,28 @@ public final class ModEntities {
         ENTITIES.register("roman_quartermaster_villager", () -> EntityType.Builder.of(RomanQuartermasterVillagerEntity::new, MobCategory.CREATURE)
             .sized(0.80f, 2.00f)
             .build(new ResourceLocation(GodOfWarMod.MOD_ID, "roman_quartermaster_villager").toString()));
+
+    // Custom Weapon Projectiles
+    public static final RegistrySupplier<EntityType<ThrownLeviathanAxeEntity>> THROWN_LEVIATHAN_AXE =
+        ENTITIES.register("thrown_leviathan_axe", () -> EntityType.Builder.<ThrownLeviathanAxeEntity>of(ThrownLeviathanAxeEntity::new, MobCategory.MISC)
+            .sized(0.55f, 0.55f)
+            .clientTrackingRange(6)
+            .updateInterval(2)
+            .build(new ResourceLocation(GodOfWarMod.MOD_ID, "thrown_leviathan_axe").toString()));
+
+    public static final RegistrySupplier<EntityType<DraupnirSpearProjectileEntity>> DRAUPNIR_SPEAR_PROJECTILE =
+        ENTITIES.register("draupnir_spear_projectile", () -> EntityType.Builder.<DraupnirSpearProjectileEntity>of(DraupnirSpearProjectileEntity::new, MobCategory.MISC)
+            .sized(0.45f, 0.45f)
+            .clientTrackingRange(6)
+            .updateInterval(2)
+            .build(new ResourceLocation(GodOfWarMod.MOD_ID, "draupnir_spear_projectile").toString()));
+
+    public static final RegistrySupplier<EntityType<BloodOrbEntity>> BLOOD_ORB =
+        ENTITIES.register("blood_orb", () -> EntityType.Builder.<BloodOrbEntity>of(BloodOrbEntity::new, MobCategory.MISC)
+            .sized(0.45f, 0.45f)
+            .clientTrackingRange(6)
+            .updateInterval(2)
+            .build(new ResourceLocation(GodOfWarMod.MOD_ID, "blood_orb").toString()));
 
     public static void register() {
         ENTITIES.register();

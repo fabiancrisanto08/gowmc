@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FGF",
+    "FEF",
+    "ACA"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "E": {
+      "item": "godofwar:olympus_essence"
+    },
+    "A": {
+      "item": "godofwar:chaos_ash"
+    },
+    "C": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "result": {
+    "item": "godofwar:wings_of_icarus",
+    "count": 1
+  }
+}

@@ -1,101 +1,59 @@
 package com.spartanforge.godofwar.entity;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerPlayer;
+import com.spartanforge.godofwar.entity.base.AbstractGodBossEntity;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 /**
  * Atenea, Diosa de la Sabiduría (Saga Griega)
- * Habilidades: Égida Protectora (Escudo Reflectante) | Lanza de Sabiduría | Proyección Espectral Verde | Pulso Telequinético
+ * Habilidades: Estocada de Lanza Astral | Escudo Égida (Resistencia + Onda de Sabiduría)
  */
-public class AthenaBossEntity extends Monster implements GeoEntity {
-    private final ServerBossEvent bossEvent = new ServerBossEvent(
-        Component.translatable("entity.godofwar.athena_boss"),
-        BossEvent.BossBarColor.RED,
-        BossEvent.BossBarOverlay.NOTCHED_10
-    );
-
+public class AthenaBossEntity extends AbstractGodBossEntity {
     public AthenaBossEntity(EntityType<? extends Monster> type, Level level) {
-        super(type, level);
-        this.xpReward = 500;
+        super(type, level, "entity.godofwar.athena_boss", BossEvent.BossBarColor.WHITE, 480);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
-            .add(Attributes.MAX_HEALTH, 820.0D)
-            .add(Attributes.ATTACK_DAMAGE, 22.0D)
+            .add(Attributes.MAX_HEALTH, 620.0D)
+            .add(Attributes.ATTACK_DAMAGE, 13.0D)
             .add(Attributes.ARMOR, 14.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.30D)
+            .add(Attributes.MOVEMENT_SPEED, 0.33D)
             .add(Attributes.FOLLOW_RANGE, 48.0D)
-            .add(Attributes.KNOCKBACK_RESISTANCE, 0.95D);
+            .add(Attributes.KNOCKBACK_RESISTANCE, 0.85D);
     }
 
     @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.15D, false));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.85D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 12.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    protected void performPrimaryAbility(ServerLevel level, LivingEntity target, boolean phaseTwo) {
+        // Estocada veloz con rayo astral
+        dashToward(target, 1.35D, 0.25D);
+        beamAttack(level, target, 15.0D, phaseTwo ? 13.0F : 10.0F, ParticleTypes.GLOW);
+        level.playSound(null, this.blockPosition(), SoundEvents.TRIDENT_THROW, SoundSource.HOSTILE, 1.3F, 1.3F);
     }
 
     @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    protected void performSecondaryAbility(ServerLevel level, LivingEntity target, boolean phaseTwo) {
+        // Égida de Atenea: se protege temporalmente y repele enemigos con luz divina
+        this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, phaseTwo ? 1 : 0));
+        radialShockwave(level, 6.5D, phaseTwo ? 14.0F : 10.0F, 1.7D, 0.45D,
+            ParticleTypes.END_ROD, SoundEvents.BEACON_ACTIVATE);
     }
 
-    @Override
-    public void startSeenByPlayer(ServerPlayer player) {
-        super.startSeenByPlayer(player);
-        this.bossEvent.addPlayer(player);
-    }
-
-    @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
-        super.stopSeenByPlayer(player);
-        this.bossEvent.removePlayer(player);
-    }
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 4, state -> {
-            if (this.swinging) {
-                return state.setAndContinue(RawAnimation.begin().thenPlay("spear_thrust"));
-            }
-            if (state.isMoving()) {
-                return state.setAndContinue(RawAnimation.begin().thenLoop("glide"));
-            }
-            return state.setAndContinue(RawAnimation.begin().thenLoop("idle"));
-        }));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
+    @Override protected ParticleOptions getPhaseTwoParticle() { return ParticleTypes.END_ROD; }
+    @Override protected String getPhaseTwoAnnouncement() { return "¡Alza la Égida de la Sabiduría Divina!"; }
+    @Override protected String getIdleAnim() { return "idle"; }
+    @Override protected String getMoveAnim() { return "glide"; }
+    @Override protected String getCastAnim() { return "spear_thrust"; }
 }

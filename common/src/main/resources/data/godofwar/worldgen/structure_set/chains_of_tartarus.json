@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "godofwar:chains_of_tartarus",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 95137264,
+    "spacing": 24,
+    "separation": 10
+  }
+}

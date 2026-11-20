@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EGE",
+    "GCG",
+    " O "
+  ],
+  "key": {
+    "E": {
+      "item": "godofwar:olympus_essence"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "godofwar:blades_of_chaos"
+    },
+    "O": {
+      "item": "minecraft:chain"
+    }
+  },
+  "result": {
+    "item": "godofwar:blades_of_athena",
+    "count": 1
+  }
+}

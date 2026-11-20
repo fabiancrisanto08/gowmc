@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "godofwar:block/pandoras_box_block"
+    "top": "godofwar:block/pandoras_box_block_top",
+    "bottom": "godofwar:block/pandoras_box_block_bottom",
+    "side": "godofwar:block/pandoras_box_block"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " CC",
+    "CNC",
+    "S  "
+  ],
+  "key": {
+    "C": {
+      "item": "godofwar:chaos_ash"
+    },
+    "N": {
+      "item": "minecraft:netherite_sword"
+    },
+    "S": {
+      "item": "minecraft:chain"
+    }
+  },
+  "result": {
+    "item": "godofwar:blades_of_chaos",
+    "count": 1
+  }
+}

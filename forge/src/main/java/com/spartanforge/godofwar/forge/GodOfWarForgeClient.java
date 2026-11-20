@@ -1,57 +1,46 @@
 package com.spartanforge.godofwar.forge;
 
 import com.spartanforge.godofwar.GodOfWarMod;
+import com.spartanforge.godofwar.client.GodOfWarClientInit;
+import com.spartanforge.godofwar.client.GodOfWarKeybinds;
+import com.spartanforge.godofwar.client.renderer.*;
 import com.spartanforge.godofwar.registry.ModEntities;
-import com.spartanforge.godofwar.client.renderer.ZeusBossRenderer;
-import com.spartanforge.godofwar.client.renderer.AresBossRenderer;
-import com.spartanforge.godofwar.client.renderer.AthenaBossRenderer;
-import com.spartanforge.godofwar.client.renderer.PoseidonBossRenderer;
-import com.spartanforge.godofwar.client.renderer.HadesBossRenderer;
-import com.spartanforge.godofwar.client.renderer.HermesBossRenderer;
-import com.spartanforge.godofwar.client.renderer.HeliosBossRenderer;
-import com.spartanforge.godofwar.client.renderer.HerculesBossRenderer;
-import com.spartanforge.godofwar.client.renderer.PersephoneBossRenderer;
-import com.spartanforge.godofwar.client.renderer.ThanatosBossRenderer;
-import com.spartanforge.godofwar.client.renderer.OdinBossRenderer;
-import com.spartanforge.godofwar.client.renderer.ThorBossRenderer;
-import com.spartanforge.godofwar.client.renderer.BaldurBossRenderer;
-import com.spartanforge.godofwar.client.renderer.SigrunBossRenderer;
-import com.spartanforge.godofwar.client.renderer.CronosTitanRenderer;
-import com.spartanforge.godofwar.client.renderer.GaiaTitanRenderer;
-import com.spartanforge.godofwar.client.renderer.AtlasTitanRenderer;
-import com.spartanforge.godofwar.client.renderer.TyphonTitanRenderer;
-import com.spartanforge.godofwar.client.renderer.PersesTitanRenderer;
-import com.spartanforge.godofwar.client.renderer.MinotaurMobRenderer;
-import com.spartanforge.godofwar.client.renderer.SirenMobRenderer;
-import com.spartanforge.godofwar.client.renderer.CyclopsMobRenderer;
-import com.spartanforge.godofwar.client.renderer.GorgonMobRenderer;
-import com.spartanforge.godofwar.client.renderer.CerberusMobRenderer;
-import com.spartanforge.godofwar.client.renderer.HarpyMobRenderer;
-import com.spartanforge.godofwar.client.renderer.SatyrMobRenderer;
-import com.spartanforge.godofwar.client.renderer.CentaurMobRenderer;
-import com.spartanforge.godofwar.client.renderer.DraugrMobRenderer;
-import com.spartanforge.godofwar.client.renderer.WulverMobRenderer;
-import com.spartanforge.godofwar.client.renderer.EinherjarMobRenderer;
-import com.spartanforge.godofwar.client.renderer.RomanWarriorRenderer;
-import com.spartanforge.godofwar.client.renderer.RomanArcherRenderer;
-import com.spartanforge.godofwar.client.renderer.RomanBerserkerRenderer;
-import com.spartanforge.godofwar.client.renderer.RomanCenturionRenderer;
-import com.spartanforge.godofwar.client.renderer.RomanPraetorianRenderer;
-import com.spartanforge.godofwar.client.renderer.PhoenixCreatureRenderer;
-import com.spartanforge.godofwar.client.renderer.PegasusCreatureRenderer;
-import com.spartanforge.godofwar.client.renderer.HippocampusCreatureRenderer;
-import com.spartanforge.godofwar.client.renderer.FenrirCreatureRenderer;
-import com.spartanforge.godofwar.client.renderer.SpartanSmithVillagerRenderer;
-import com.spartanforge.godofwar.client.renderer.GreekOracleVillagerRenderer;
-import com.spartanforge.godofwar.client.renderer.DwarfForgerVillagerRenderer;
-import com.spartanforge.godofwar.client.renderer.RomanQuartermasterVillagerRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = GodOfWarMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class GodOfWarForgeClient {
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(GodOfWarClientInit::init);
+    }
+
+    @SubscribeEvent
+    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+        event.register(GodOfWarKeybinds.KEY_WEAPON_ABILITY);
+        event.register(GodOfWarKeybinds.KEY_EXECUTE);
+        event.register(GodOfWarKeybinds.KEY_UPGRADE_MENU);
+        event.register(GodOfWarKeybinds.KEY_CURIO_POWER);
+        event.register(GodOfWarKeybinds.KEY_MAGIC_MENU);
+        event.register(GodOfWarKeybinds.KEY_CYCLE_MAGIC);
+    }
+
+    @SubscribeEvent
+    public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
+        for (String skin : event.getSkins()) {
+            LivingEntityRenderer<?, ?> renderer = event.getSkin(skin);
+            if (renderer instanceof PlayerRenderer playerRenderer) {
+                playerRenderer.addLayer(new BackWeaponRenderLayer(playerRenderer));
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntities.ZEUS_BOSS.get(), ZeusBossRenderer::new);
@@ -97,5 +86,8 @@ public final class GodOfWarForgeClient {
         event.registerEntityRenderer(ModEntities.GREEK_ORACLE_VILLAGER.get(), GreekOracleVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.DWARF_FORGER_VILLAGER.get(), DwarfForgerVillagerRenderer::new);
         event.registerEntityRenderer(ModEntities.ROMAN_QUARTERMASTER_VILLAGER.get(), RomanQuartermasterVillagerRenderer::new);
+        event.registerEntityRenderer(ModEntities.THROWN_LEVIATHAN_AXE.get(), ThrownLeviathanAxeRenderer::new);
+        event.registerEntityRenderer(ModEntities.DRAUPNIR_SPEAR_PROJECTILE.get(), DraupnirSpearRenderer::new);
+        event.registerEntityRenderer(ModEntities.BLOOD_ORB.get(), BloodOrbRenderer::new);
     }
 }

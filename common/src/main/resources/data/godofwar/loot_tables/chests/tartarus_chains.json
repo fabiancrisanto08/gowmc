@@ -1,0 +1,148 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 6
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:chaos_ash",
+          "weight": 28,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:titan_core",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:olympus_essence",
+          "weight": 16,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:horn_of_blood_mead",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:army_of_hades_power",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:claws_of_hades",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_scrap",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_block",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_rod",
+          "weight": 18,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 5
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:golden_fleece",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:amulet_of_ouroboros",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_efreet",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_charons_wrath",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_soul_summon",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_scourge_of_erinys",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_fire_of_ares",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_soul_of_hades",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_blade_of_ares_slash",
+          "weight": 3
+        }
+      ]
+    }
+  ]
+}

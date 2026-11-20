@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BCB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:polished_blackstone_bricks"
+    },
+    "C": {
+      "item": "godofwar:chaos_ash"
+    }
+  },
+  "result": {
+    "item": "godofwar:spartan_stone",
+    "count": 8
+  }
+}

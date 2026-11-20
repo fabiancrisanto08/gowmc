@@ -1,0 +1,28 @@
+{
+  "type": "epicfight:sword",
+  "attributes": {
+    "one_hand": {
+      "armor_negation": 12.0,
+      "impact": 1.7,
+      "max_strikes": 3
+    },
+    "two_hand": {
+      "armor_negation": 18.0,
+      "impact": 2.2,
+      "max_strikes": 4
+    }
+  },
+  "collider": {
+    "number": 3,
+    "center": [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    "size": [
+      0.55,
+      0.55,
+      1.25
+    ]
+  }
+}

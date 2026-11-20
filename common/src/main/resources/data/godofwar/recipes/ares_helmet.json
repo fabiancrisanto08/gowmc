@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MTM",
+    "M M"
+  ],
+  "key": {
+    "M": {
+      "item": "godofwar:chaos_ash"
+    },
+    "T": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "godofwar:ares_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MTM",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": {
+      "item": "godofwar:olympus_essence"
+    },
+    "T": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "godofwar:zeus_leggings",
+    "count": 1
+  }
+}

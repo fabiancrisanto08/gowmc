@@ -1,0 +1,134 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 6
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:asgardian_steel",
+          "weight": 24,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:chaos_ash",
+          "weight": 22,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 5
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:horn_of_blood_mead",
+          "weight": 9
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:idunn_apple",
+          "weight": 7
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:guardian_shield",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:draupnir_spear",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 14,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot",
+          "weight": 22,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_golden_apple",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:amulet_of_ouroboros",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:wings_of_icarus",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_typhons_bane",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_horn_of_boreas",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_ice_of_poseidon",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_cronos_rage",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_head_of_euryale",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_atlas_quake",
+          "weight": 3
+        }
+      ]
+    }
+  ]
+}

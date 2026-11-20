@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAI",
+    "ANI",
+    " S "
+  ],
+  "key": {
+    "A": {
+      "item": "godofwar:asgardian_steel"
+    },
+    "I": {
+      "item": "minecraft:blue_ice"
+    },
+    "N": {
+      "item": "minecraft:netherite_axe"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "godofwar:leviathan_axe",
+    "count": 1
+  }
+}

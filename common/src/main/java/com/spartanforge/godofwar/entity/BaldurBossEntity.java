@@ -1,101 +1,69 @@
 package com.spartanforge.godofwar.entity;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerPlayer;
+import com.spartanforge.godofwar.entity.base.AbstractGodBossEntity;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 /**
  * Baldur, El Invulnerable (Saga Nórdica)
- * Habilidades: Inmunidad Elemental Alternante (Fuego/Hielo) | Salto Sísmico | Ráfaga de Puños
+ * Habilidades: Alternancia Elemental (Fuego de Muspelheim / Escarcha de Helheim) + Embestida Relámpago
  */
-public class BaldurBossEntity extends Monster implements GeoEntity {
-    private final ServerBossEvent bossEvent = new ServerBossEvent(
-        Component.translatable("entity.godofwar.baldur_boss"),
-        BossEvent.BossBarColor.BLUE,
-        BossEvent.BossBarOverlay.NOTCHED_10
-    );
+public class BaldurBossEntity extends AbstractGodBossEntity {
+    private boolean fireStance = false;
 
     public BaldurBossEntity(EntityType<? extends Monster> type, Level level) {
-        super(type, level);
-        this.xpReward = 500;
+        super(type, level, "entity.godofwar.baldur_boss", BossEvent.BossBarColor.BLUE, 520);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
-            .add(Attributes.MAX_HEALTH, 880.0D)
-            .add(Attributes.ATTACK_DAMAGE, 24.0D)
-            .add(Attributes.ARMOR, 20.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.30D)
+            .add(Attributes.MAX_HEALTH, 680.0D)
+            .add(Attributes.ATTACK_DAMAGE, 14.0D)
+            .add(Attributes.ARMOR, 14.0D)
+            .add(Attributes.MOVEMENT_SPEED, 0.36D)
             .add(Attributes.FOLLOW_RANGE, 48.0D)
-            .add(Attributes.KNOCKBACK_RESISTANCE, 0.95D);
+            .add(Attributes.KNOCKBACK_RESISTANCE, 0.85D);
+    }
+
+    @Override protected int getPrimaryCooldownBase() { return 70; }
+    @Override protected int getPrimaryCooldownPhaseTwo() { return 48; }
+
+    @Override
+    protected void performPrimaryAbility(ServerLevel level, LivingEntity target, boolean phaseTwo) {
+        dashToward(target, 1.65D, 0.35D);
+        ParticleOptions p = fireStance ? ParticleTypes.FLAME : ParticleTypes.SNOWFLAKE;
+        radialShockwave(level, 4.5D, phaseTwo ? 14.0F : 10.0F, 1.5D, 0.4D, p, SoundEvents.PLAYER_ATTACK_STRONG);
+        if (fireStance) {
+            target.setSecondsOnFire(4);
+        } else {
+            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 70, 2));
+        }
     }
 
     @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.15D, false));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.85D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 12.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    protected void performSecondaryAbility(ServerLevel level, LivingEntity target, boolean phaseTwo) {
+        // Cambio elemental entre Fuego y Hielo con onda explosiva
+        fireStance = !fireStance;
+        ParticleOptions p = fireStance ? ParticleTypes.FLAME : ParticleTypes.SNOWFLAKE;
+        radialShockwave(level, 7.0D, phaseTwo ? 15.0F : 11.0F, 1.3D, 0.45D, p, SoundEvents.GLASS_BREAK);
+        this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 60, 0));
     }
 
-    @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-    @Override
-    public void startSeenByPlayer(ServerPlayer player) {
-        super.startSeenByPlayer(player);
-        this.bossEvent.addPlayer(player);
-    }
-
-    @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
-        super.stopSeenByPlayer(player);
-        this.bossEvent.removePlayer(player);
-    }
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 4, state -> {
-            if (this.swinging) {
-                return state.setAndContinue(RawAnimation.begin().thenPlay("elemental_shift"));
-            }
-            if (state.isMoving()) {
-                return state.setAndContinue(RawAnimation.begin().thenLoop("brawler_stance"));
-            }
-            return state.setAndContinue(RawAnimation.begin().thenLoop("idle"));
-        }));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
+    @Override protected ParticleOptions getPhaseTwoParticle() { return fireStance ? ParticleTypes.FLAME : ParticleTypes.SNOWFLAKE; }
+    @Override protected String getPhaseTwoAnnouncement() { return "¡Siente el Dolor y Desata Hielo y Fuego!"; }
+    @Override protected String getIdleAnim() { return "idle"; }
+    @Override protected String getMoveAnim() { return "brawler_stance"; }
+    @Override protected String getCastAnim() { return "elemental_shift"; }
 }

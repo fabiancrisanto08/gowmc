@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "godofwar:spartan_rage_power",
+    "godofwar:poseidons_rage_power",
+    "godofwar:army_of_hades_power",
+    "godofwar:medusa_head_power"
+  ]
+}

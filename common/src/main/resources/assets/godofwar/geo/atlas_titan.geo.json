@@ -4,13 +4,13 @@
     {
       "description": {
         "identifier": "geometry.atlas_titan",
-        "texture_width": 64,
+        "texture_width": 128,
         "texture_height": 64,
-        "visible_bounds_width": 10,
-        "visible_bounds_height": 14,
+        "visible_bounds_width": 3,
+        "visible_bounds_height": 3.5,
         "visible_bounds_offset": [
           0,
-          1.5,
+          1.75,
           0
         ]
       },
@@ -28,24 +28,73 @@
           "parent": "root",
           "pivot": [
             0,
-            32,
+            12,
             0
           ],
           "cubes": [
             {
               "origin": [
-                -4,
+                -5,
                 12,
-                -2
+                -3
               ],
               "size": [
-                8,
+                10,
                 12,
-                4
+                6
               ],
               "uv": [
-                16,
-                16
+                64,
+                0
+              ]
+            },
+            {
+              "origin": [
+                -5,
+                12,
+                -3
+              ],
+              "size": [
+                10,
+                12,
+                6
+              ],
+              "uv": [
+                96,
+                0
+              ],
+              "inflate": 0.35
+            },
+            {
+              "origin": [
+                -10,
+                21,
+                -3
+              ],
+              "size": [
+                6,
+                4,
+                6
+              ],
+              "uv": [
+                64,
+                31
+              ]
+            },
+            {
+              "origin": [
+                4,
+                21,
+                -3
+              ],
+              "size": [
+                6,
+                4,
+                6
+              ],
+              "uv": [
+                64,
+                31
               ]
             }
           ]
@@ -74,6 +123,39 @@
                 0,
                 0
               ]
+            },
+            {
+              "origin": [
+                -4,
+                24,
+                -4
+              ],
+              "size": [
+                8,
+                8,
+                8
+              ],
+              "uv": [
+                32,
+                0
+              ],
+              "inflate": 0.5
+            },
+            {
+              "origin": [
+                -4,
+                19,
+                -4.6
+              ],
+              "size": [
+                8,
+                6,
+                3
+              ],
+              "uv": [
+                64,
+                20
+              ]
             }
           ]
         },
@@ -81,14 +163,14 @@
           "name": "right_arm",
           "parent": "body",
           "pivot": [
-            -5,
+            -6,
             22,
             0
           ],
           "cubes": [
             {
               "origin": [
-                -8,
+                -9,
                 12,
                 -2
               ],
@@ -101,6 +183,23 @@
                 40,
                 16
               ]
+            },
+            {
+              "origin": [
+                -9,
+                12,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "uv": [
+                40,
+                32
+              ],
+              "inflate": 0.35
             }
           ]
         },
@@ -108,14 +207,14 @@
           "name": "left_arm",
           "parent": "body",
           "pivot": [
-            5,
+            6,
             22,
             0
           ],
           "cubes": [
             {
               "origin": [
-                4,
+                5,
                 12,
                 -2
               ],
@@ -128,6 +227,111 @@
                 32,
                 48
               ]
+            },
+            {
+              "origin": [
+                5,
+                12,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "uv": [
+                48,
+                48
+              ],
+              "inflate": 0.35
+            }
+          ]
+        },
+        {
+          "name": "right_leg",
+          "parent": "root",
+          "pivot": [
+            -2,
+            12,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                -4,
+                0,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "uv": [
+                0,
+                16
+              ]
+            },
+            {
+              "origin": [
+                -4,
+                0,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "uv": [
+                0,
+                32
+              ],
+              "inflate": 0.3
+            }
+          ]
+        },
+        {
+          "name": "left_leg",
+          "parent": "root",
+          "pivot": [
+            2,
+            12,
+            0
+          ],
+          "cubes": [
+            {
+              "origin": [
+                0,
+                0,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "uv": [
+                16,
+                48
+              ]
+            },
+            {
+              "origin": [
+                0,
+                0,
+                -2
+              ],
+              "size": [
+                4,
+                12,
+                4
+              ],
+              "uv": [
+                0,
+                48
+              ],
+              "inflate": 0.3
             }
           ]
         }

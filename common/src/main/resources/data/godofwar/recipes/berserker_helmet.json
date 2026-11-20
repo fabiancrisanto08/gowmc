@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MTM",
+    "M M"
+  ],
+  "key": {
+    "M": {
+      "item": "godofwar:asgardian_steel"
+    },
+    "T": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "godofwar:berserker_helmet",
+    "count": 1
+  }
+}

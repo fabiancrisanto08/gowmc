@@ -1,6 +1,12 @@
 package com.spartanforge.godofwar.fabric;
 
+import com.spartanforge.godofwar.client.GodOfWarClientInit;
+import com.spartanforge.godofwar.client.GodOfWarKeybinds;
+import com.spartanforge.godofwar.client.renderer.BloodOrbRenderer;
+import com.spartanforge.godofwar.client.renderer.DraupnirSpearRenderer;
+import com.spartanforge.godofwar.client.renderer.ThrownLeviathanAxeRenderer;
 import com.spartanforge.godofwar.registry.ModEntities;
+import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
 import com.spartanforge.godofwar.client.renderer.ZeusBossRenderer;
 import com.spartanforge.godofwar.client.renderer.AresBossRenderer;
 import com.spartanforge.godofwar.client.renderer.AthenaBossRenderer;
@@ -46,6 +52,7 @@ import com.spartanforge.godofwar.client.renderer.DwarfForgerVillagerRenderer;
 import com.spartanforge.godofwar.client.renderer.RomanQuartermasterVillagerRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 
 public final class GodOfWarFabricClient implements ClientModInitializer {
     @Override
@@ -93,5 +100,15 @@ public final class GodOfWarFabricClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.GREEK_ORACLE_VILLAGER.get(), GreekOracleVillagerRenderer::new);
         EntityRendererRegistry.register(ModEntities.DWARF_FORGER_VILLAGER.get(), DwarfForgerVillagerRenderer::new);
         EntityRendererRegistry.register(ModEntities.ROMAN_QUARTERMASTER_VILLAGER.get(), RomanQuartermasterVillagerRenderer::new);
+        EntityRendererRegistry.register(ModEntities.THROWN_LEVIATHAN_AXE.get(), ThrownLeviathanAxeRenderer::new);
+        EntityRendererRegistry.register(ModEntities.DRAUPNIR_SPEAR_PROJECTILE.get(), DraupnirSpearRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BLOOD_ORB.get(), BloodOrbRenderer::new);
+        KeyMappingRegistry.register(GodOfWarKeybinds.KEY_WEAPON_ABILITY);
+        KeyMappingRegistry.register(GodOfWarKeybinds.KEY_EXECUTE);
+        KeyMappingRegistry.register(GodOfWarKeybinds.KEY_UPGRADE_MENU);
+        KeyMappingRegistry.register(GodOfWarKeybinds.KEY_CURIO_POWER);
+        KeyMappingRegistry.register(GodOfWarKeybinds.KEY_MAGIC_MENU);
+        KeyMappingRegistry.register(GodOfWarKeybinds.KEY_CYCLE_MAGIC);
+        GodOfWarClientInit.init();
     }
 }

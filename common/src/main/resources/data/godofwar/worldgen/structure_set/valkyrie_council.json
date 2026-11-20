@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "godofwar:valkyrie_council",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 88241907,
+    "spacing": 26,
+    "separation": 11
+  }
+}

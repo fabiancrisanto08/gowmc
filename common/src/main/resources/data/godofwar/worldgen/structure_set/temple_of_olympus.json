@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "godofwar:temple_of_olympus",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 74192831,
+    "spacing": 28,
+    "separation": 12
+  }
+}

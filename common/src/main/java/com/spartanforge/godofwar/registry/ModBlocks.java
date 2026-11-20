@@ -7,6 +7,8 @@ import com.spartanforge.godofwar.block.ChaosAshOreBlock;
 import com.spartanforge.godofwar.block.HephaestusForgeBlock;
 import com.spartanforge.godofwar.block.PandorasBoxBlockBlock;
 import com.spartanforge.godofwar.block.BifrostAltarBlockBlock;
+import com.spartanforge.godofwar.block.NornirChestBlock;
+import com.spartanforge.godofwar.block.RunicSealBlock;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
@@ -46,6 +48,17 @@ public final class ModBlocks {
         BLOCKS.register("bifrost_altar_block", () -> new BifrostAltarBlockBlock(BlockBehaviour.Properties.of()
             .strength(5.0f, 10.0f)
             .requiresCorrectToolForDrops()));
+
+    public static final RegistrySupplier<Block> NORNIR_CHEST =
+        BLOCKS.register("nornir_chest", () -> new NornirChestBlock(BlockBehaviour.Properties.of()
+            .strength(8.0f, 20.0f)
+            .lightLevel(state -> state.getValue(NornirChestBlock.UNLOCKED) ? 10 : 5)
+            .requiresCorrectToolForDrops()));
+
+    public static final RegistrySupplier<Block> RUNIC_SEAL =
+        BLOCKS.register("runic_seal", () -> new RunicSealBlock(BlockBehaviour.Properties.of()
+            .strength(1.2f, 6.0f)
+            .lightLevel(state -> 12)));
 
     public static void register() {
         BLOCKS.register();

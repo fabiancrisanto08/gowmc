@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  A",
+    " G ",
+    "S  "
+  ],
+  "key": {
+    "A": {
+      "item": "godofwar:asgardian_steel"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "S": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "result": {
+    "item": "godofwar:draupnir_spear",
+    "count": 1
+  }
+}

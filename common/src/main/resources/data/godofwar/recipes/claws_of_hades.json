@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ECE",
+    "CNC",
+    " S "
+  ],
+  "key": {
+    "E": {
+      "item": "godofwar:olympus_essence"
+    },
+    "C": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "N": {
+      "item": "minecraft:netherite_sword"
+    },
+    "S": {
+      "item": "minecraft:chain"
+    }
+  },
+  "result": {
+    "item": "godofwar:claws_of_hades",
+    "count": 1
+  }
+}

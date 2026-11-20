@@ -1,6 +1,1 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "godofwar:item/blades_of_chaos"
-  }
-}
+{"parent":"godofwar:item/blades_of_chaos_lvl1","overrides":[{"predicate":{"godofwar:upgrade_level":0.25},"model":"godofwar:item/blades_of_chaos_lvl2"},{"predicate":{"godofwar:upgrade_level":0.5},"model":"godofwar:item/blades_of_chaos_lvl3"},{"predicate":{"godofwar:upgrade_level":0.75},"model":"godofwar:item/blades_of_chaos_lvl4"},{"predicate":{"godofwar:upgrade_level":1.0},"model":"godofwar:item/blades_of_chaos_lvl5"}]}

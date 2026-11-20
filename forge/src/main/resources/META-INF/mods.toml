@@ -7,7 +7,7 @@ modId="godofwar"
 version="1.0.0"
 displayName="God of War: Todas las Sagas"
 description='''
-Mod completo de God of War para Minecraft 1.20.1 con todas las sagas, dioses, titanes, legion romana y GeckoLib.
+Mod completo de God of War para Minecraft 1.20.1 con todas las sagas, dioses, titanes, armas 3D compatibles con Epic Fight, Ejecuciones Brutales (Stun Meter) y Estructuras Míticas.
 '''
 
 [[dependencies.godofwar]]
@@ -28,5 +28,19 @@ side="BOTH"
 modId="geckolib"
 mandatory=true
 versionRange="[4.4.4,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.godofwar]]
+modId="curios"
+mandatory=false
+versionRange="[5.3.0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.godofwar]]
+modId="epicfight"
+mandatory=false
+versionRange="[20.0.0,)"
 ordering="AFTER"
 side="BOTH"

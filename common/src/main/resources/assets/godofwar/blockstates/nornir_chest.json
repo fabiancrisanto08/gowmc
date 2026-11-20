@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "unlocked=false": {
+      "model": "godofwar:block/nornir_chest"
+    },
+    "unlocked=true": {
+      "model": "godofwar:block/nornir_chest_unlocked"
+    }
+  }
+}

@@ -1,101 +1,53 @@
 package com.spartanforge.godofwar.entity;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerPlayer;
+import com.spartanforge.godofwar.entity.base.AbstractGodBossEntity;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 /**
- * Perses, Titán de la Destrucción (Titanes)
- * Habilidades: Erupción Volcánica | Puño de Magma | Lluvia de Ceniza
+ * Perses, Titán Volcánico de la Destrucción (Saga Griega)
+ * Habilidades: Puño de Lava | Rugido Volcánico Incandescente
  */
-public class PersesTitanEntity extends Monster implements GeoEntity {
-    private final ServerBossEvent bossEvent = new ServerBossEvent(
-        Component.translatable("entity.godofwar.perses_titan"),
-        BossEvent.BossBarColor.RED,
-        BossEvent.BossBarOverlay.NOTCHED_10
-    );
-
+public class PersesTitanEntity extends AbstractGodBossEntity {
     public PersesTitanEntity(EntityType<? extends Monster> type, Level level) {
-        super(type, level);
-        this.xpReward = 500;
+        super(type, level, "entity.godofwar.perses_titan", BossEvent.BossBarColor.RED, 950);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
-            .add(Attributes.MAX_HEALTH, 2900.0D)
-            .add(Attributes.ATTACK_DAMAGE, 38.0D)
-            .add(Attributes.ARMOR, 20.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.18D)
-            .add(Attributes.FOLLOW_RANGE, 48.0D)
-            .add(Attributes.KNOCKBACK_RESISTANCE, 0.95D);
+            .add(Attributes.MAX_HEALTH, 1250.0D)
+            .add(Attributes.ATTACK_DAMAGE, 19.0D)
+            .add(Attributes.ARMOR, 17.0D)
+            .add(Attributes.MOVEMENT_SPEED, 0.23D)
+            .add(Attributes.FOLLOW_RANGE, 64.0D)
+            .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
     }
 
     @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.15D, false));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.85D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 12.0F));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+    protected void performPrimaryAbility(ServerLevel level, LivingEntity target, boolean phaseTwo) {
+        radialShockwave(level, phaseTwo ? 12.5D : 9.5D, phaseTwo ? 19.0F : 14.0F, 2.0D, 0.75D,
+            ParticleTypes.LAVA, SoundEvents.GENERIC_EXPLODE);
+        target.setSecondsOnFire(7);
     }
 
     @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
-        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    protected void performSecondaryAbility(ServerLevel level, LivingEntity target, boolean phaseTwo) {
+        beamAttack(level, target, 26.0D, phaseTwo ? 18.0F : 13.0F, ParticleTypes.FLAME);
+        level.sendParticles(ParticleTypes.LAVA, this.getX(), this.getY() + 3.0, this.getZ(), 40, 4.0, 2.0, 4.0, 0.12);
     }
 
-    @Override
-    public void startSeenByPlayer(ServerPlayer player) {
-        super.startSeenByPlayer(player);
-        this.bossEvent.addPlayer(player);
-    }
-
-    @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
-        super.stopSeenByPlayer(player);
-        this.bossEvent.removePlayer(player);
-    }
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 4, state -> {
-            if (this.swinging) {
-                return state.setAndContinue(RawAnimation.begin().thenPlay("volcanic_roar"));
-            }
-            if (state.isMoving()) {
-                return state.setAndContinue(RawAnimation.begin().thenLoop("lava_fist"));
-            }
-            return state.setAndContinue(RawAnimation.begin().thenLoop("idle_burn"));
-        }));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
+    @Override protected ParticleOptions getPhaseTwoParticle() { return ParticleTypes.LAVA; }
+    @Override protected String getPhaseTwoAnnouncement() { return "¡Perses entra en Erupción Volcánica!"; }
+    @Override protected String getIdleAnim() { return "idle_burn"; }
+    @Override protected String getMoveAnim() { return "lava_fist"; }
+    @Override protected String getCastAnim() { return "volcanic_roar"; }
 }

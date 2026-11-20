@@ -1,0 +1,9 @@
+{
+  "entities": [
+    "minecraft:player"
+  ],
+  "slots": [
+    "gow_power",
+    "gow_relic"
+  ]
+}

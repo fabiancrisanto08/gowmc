@@ -8,19 +8,6 @@ architectury {
     minecraft = rootProject.minecraft_version
 }
 
-subprojects {
-    apply plugin: "dev.architectury.loom"
-
-    loom {
-        silentMojangMappingsLicense()
-    }
-
-    dependencies {
-        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-        mappings loom.officialMojangMappings()
-    }
-}
-
 allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
@@ -41,6 +28,14 @@ allprojects {
         maven {
             name = "GeckoLib"
             url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+            content {
+                includeGroupByRegex("software\\.bernie.*")
+                includeGroup("com.eliotlash.mclib")
+            }
+        }
+        maven {
+            name = "Curios"
+            url "https://maven.theillusivec4.top/"
         }
     }
 
@@ -51,5 +46,18 @@ allprojects {
 
     java {
         withSourcesJar()
+    }
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        mappings loom.officialMojangMappings()
     }
 }

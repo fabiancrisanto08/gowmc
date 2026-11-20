@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "all": "godofwar:block/hephaestus_forge"
+    "top": "godofwar:block/hephaestus_forge_top",
+    "bottom": "godofwar:block/hephaestus_forge_bottom",
+    "side": "godofwar:block/hephaestus_forge"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M M",
+    "MTM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "godofwar:chaos_ash"
+    },
+    "T": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "godofwar:ares_chestplate",
+    "count": 1
+  }
+}

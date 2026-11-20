@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "CAC",
+    "OBO"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "C": {
+      "item": "godofwar:chaos_ash"
+    },
+    "A": {
+      "item": "minecraft:anvil"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "B": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "result": {
+    "item": "godofwar:hephaestus_forge",
+    "count": 1
+  }
+}

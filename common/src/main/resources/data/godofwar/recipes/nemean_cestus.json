@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "ECE",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "E": {
+      "item": "godofwar:olympus_essence"
+    },
+    "C": {
+      "item": "godofwar:chaos_ash"
+    }
+  },
+  "result": {
+    "item": "godofwar:nemean_cestus",
+    "count": 1
+  }
+}

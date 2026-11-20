@@ -1,0 +1,150 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "godofwar:block/nornir_chest_side",
+    "up": "godofwar:block/nornir_chest_top",
+    "down": "godofwar:block/nornir_chest_top",
+    "north": "godofwar:block/nornir_chest_front_locked",
+    "south": "godofwar:block/nornir_chest_side",
+    "east": "godofwar:block/nornir_chest_side",
+    "west": "godofwar:block/nornir_chest_side"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        11,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            5,
+            16,
+            16
+          ],
+          "texture": "#north"
+        },
+        "south": {
+          "uv": [
+            0,
+            5,
+            16,
+            16
+          ],
+          "texture": "#south"
+        },
+        "east": {
+          "uv": [
+            0,
+            5,
+            16,
+            16
+          ],
+          "texture": "#east"
+        },
+        "west": {
+          "uv": [
+            0,
+            5,
+            16,
+            16
+          ],
+          "texture": "#west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#down"
+        }
+      }
+    },
+    {
+      "from": [
+        0.5,
+        11,
+        0.5
+      ],
+      "to": [
+        15.5,
+        15,
+        15.5
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            5
+          ],
+          "texture": "#north"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            5
+          ],
+          "texture": "#south"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            5
+          ],
+          "texture": "#east"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            5
+          ],
+          "texture": "#west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#down"
+        }
+      }
+    }
+  ]
+}

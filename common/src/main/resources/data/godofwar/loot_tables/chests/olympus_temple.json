@@ -1,0 +1,158 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 6
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:olympus_essence",
+          "weight": 22,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:chaos_ash",
+          "weight": 26,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:idunn_apple",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:spartan_rage_power",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:poseidons_rage_power",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:medusa_head_power",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot",
+          "weight": 24,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 9
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_apple",
+          "weight": 14,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:golden_fleece",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:wings_of_icarus",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:blades_of_athena",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_zeus_fury",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_divine_reckoning",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_army_of_sparta",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_light_of_dawn",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_nemesis_rage",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_lightning_of_zeus",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_nemean_roar",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "godofwar:magic_eye_of_atlantis",
+          "weight": 3
+        }
+      ]
+    }
+  ]
+}
